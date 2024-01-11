@@ -359,7 +359,7 @@ async function drawPortraits() {
     let porkey = charlist[lstMember[0][i]]
     let portraitTag1 = library[charlist[lstMember[0][i]]].portrait
         portraitTag1 != "" ? portraitTag1 = '_' + portraitTag1 : portraitTag1 += "";
-    let title = library[porkey].displayTitle;
+    //let title = library[porkey].displayTitle;
     let rank = new Image();
     rank.src = `./other_assets/numbers/${final_rank[i]}.png`
     console.log(final_rank[i])
@@ -386,7 +386,7 @@ async function drawPortraits() {
       }
       await ctx.fillText(name, 400, 160 + (i * 250))
       ctx.font = '25px FEH';
-      await ctx.fillText(title, 400, 210 + (i * 250))
+      //await ctx.fillText(title, 400, 210 + (i * 250))
     }
   }
   document.getElementById('resultcontainer').style.display = 'block';
