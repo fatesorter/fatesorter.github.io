@@ -53,7 +53,7 @@ function startup() {
 
 
   this.selectAllMainline()
-  for (let i = 1; i < 2; i++) {
+  for (let i = 1; i < 4; i++) {
     document.getElementById(`dupeC${i}`).checked = false;
     }
     for (let i = 1; i < 7; i++) {
@@ -143,7 +143,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 2; i++) {
+    for (let i = 1; i < 4; i++) {
         if (!document.getElementById(`dupeC${i}`).checked) {
             continue;
         }
