@@ -46,6 +46,7 @@ function uncheckFilters() {
 }
 
 function startup() {
+    this.uncheckFilters();
   document.getElementById('topTen').style.display = 'none';
   document.getElementById('resultcontainer').style.display = 'none';
   document.getElementById('optSelect_all').checked = false;
@@ -53,10 +54,10 @@ function startup() {
 
 
   this.selectAllMainline()
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i < 8; i++) {
     document.getElementById(`dupeC${i}`).checked = false;
     }
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < 8; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
 }
@@ -143,7 +144,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 8; i++) {
         if (!document.getElementById(`dupeC${i}`).checked) {
             continue;
         }
@@ -165,7 +166,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < 8; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -197,8 +198,24 @@ function applyFilters() {
     if (games.includes('Fate/Zero')) {
         tags.push('zero')
     }
+    if (games.includes('Fate/strange Fake')) {
+        tags.push('sf')
+    }
     portraitTagSelect(tags)
 
+    let useTemp = false;
+    let templist = [];
+    for (let i = 0; i < 2; i++) { //filter for role
+        if (document.getElementById(`filter${i}`).checked) {
+            templist = [...templist, ...charlist.filter(element =>
+                (library[element].class.includes(filtersArr[i]))
+            )]
+            useTemp = true;
+        }
+    }
+    if (useTemp) {
+        charlist = templist;
+    }
     charlist = this.shuffle(charlist)
     this.removeDoubles()
     charlist = [...new Set(charlist)];
