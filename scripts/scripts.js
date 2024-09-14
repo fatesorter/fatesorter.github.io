@@ -49,7 +49,9 @@ function startup() {
     this.uncheckFilters();
   document.getElementById('topTen').style.display = 'none';
   document.getElementById('resultcontainer').style.display = 'none';
-  document.getElementById('optSelect_all').checked = false;
+    document.getElementById('optSelect_all').checked = false;
+    document.getElementById('optSelect_main').checked = false;
+    document.getElementById('optSelect_mainextra').checked = false;
     document.getElementById('optSelect_allExtra').checked = false;
 
 
@@ -57,7 +59,7 @@ function startup() {
   for (let i = 1; i < 8; i++) {
     document.getElementById(`dupeC${i}`).checked = false;
     }
-    for (let i = 1; i < 8; i++) {
+    for (let i = 1; i < 9; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
 }
@@ -67,6 +69,7 @@ function selectAllMainline() {
     document.getElementById('option' + i).checked = document.getElementById('optSelect_all').checked;
   }
 }
+
 
 function reset() {
   if (window.confirm("Do you want to start over? Your saved progress will be deleted.")) {
@@ -92,6 +95,20 @@ function selectAllRomhack() {
   for (let i = 0; i < otherTMArr.length; i++) {
     document.getElementById('romhack' + i).checked = document.getElementById('otherTMSelect_all').checked;
   }
+}
+
+
+function selectMain(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].includes("stay night") || arr[i].includes("hollow ataraxia") || arr[i].includes("Zero") || arr[i].includes("Case Files") || arr[i].includes("strange Fake"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
+}
+function selectMainExtra(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if ((arr[i].includes("stay night") || arr[i].includes("hollow ataraxia") || arr[i].includes("Zero") || arr[i].includes("Case Files") || arr[i].includes("strange Fake")) && arr[i].includes("Extra"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
 }
 
 function portraitChoice(id1, id2, id3, id4) {
@@ -166,7 +183,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 8; i++) {
+    for (let i = 1; i < 9; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -192,20 +209,39 @@ function portraitTagSelect(tags) {
 
 function applyFilters() {
     let tags = [];
-    if (games.includes('Fate/stay night') || games.includes('Fate/hollow ataraxia')) {
+    if (games.includes('Fate/stay night') || games.includes('Fate/hollow ataraxia') ||
+        games.includes('Fate/stay night Extra') || games.includes('Fate/hollow ataraxia Extra')) {
         tags.push('sn')
     }
-    if (games.includes('Fate/Zero')) {
+    if (games.includes('Fate/Zero') || games.includes('Fate/Zero Extra')) {
         tags.push('zero')
     }
-    if (games.includes('Fate/strange Fake')) {
+    if (games.includes('Case Files') || games.includes('Case Files Extra')) {
+        tags.push('lemii')
+        tags.push('lord')
+    }
+    if (games.includes('Fate/strange Fake') || games.includes('Fate/strange Fake Extra')) {
         tags.push('sf')
     }
     portraitTagSelect(tags)
 
     let useTemp = false;
     let templist = [];
-    for (let i = 0; i < 2; i++) { //filter for role
+    for (let i = 0; i < 2; i++) { //filter for Master/Servant
+        if (document.getElementById(`filter${i}`).checked) {
+            templist = [...templist, ...charlist.filter(element =>
+                (library[element].class.includes(filtersArr[i]))
+            )]
+            useTemp = true;
+        }
+    }
+    if (useTemp) {
+        charlist = templist;
+    }
+
+    useTemp = false;
+    templist = [];
+    for (let i = 2; i < 4; i++) { //filter for Church/Clock Tower
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))

@@ -42,33 +42,8 @@ font-size: 12px;
     text-align: center;
 }
 
-#kofi {
-    background: url('./buttons/kofi.png');
-        background-size: 40px 40px;
-    background-position: 50% 50%;
-
-    background-repeat: no-repeat;
-}
-
-#twitter {
-    background: url('./buttons/twitter.png');
-        background-size: 40px 40px;
-    background-position: 50% 50%;
-
-    background-repeat: no-repeat;
-}
-
 .content select {
     margin-left: 5px;
-}
-
-
-
-#discord {
-    background: url('./buttons/discord.png');
-        background-size: 40px 40px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
 }
 
 
@@ -113,7 +88,7 @@ font-size: 12px;
 
 
 #resTable {
-    width: 300px;
+    width: 200px;
     font-size: 18px;
     color: white;
     line-height: 120%;

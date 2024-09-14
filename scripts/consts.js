@@ -1,11 +1,19 @@
 const fateArr = [
     'Fate/stay night',
+    'Fate/stay night Extra',
     'Fate/hollow ataraxia',
+    'Fate/hollow ataraxia Extra',
     'Fate/Zero',
-    'Fate/strange Fake'
+    'Fate/Zero Extra',
+    'Case Files',
+    'Case Files Extra',
+    'Fate/strange Fake',
+    'Fate/strange Fake Extra'
 ]
 
 const filtersArr = [
     "Master",
-    "Servant"
+    "Servant",
+    "Clock Tower",
+    "Church"
 ]
