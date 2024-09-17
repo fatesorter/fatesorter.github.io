@@ -8,12 +8,20 @@ const fateArr = [
     'Case Files',
     'Case Files Extra',
     'Fate/strange Fake',
-    'Fate/strange Fake Extra'
+    'Fate/strange Fake Extra',
+    'Fate/EXTRA',
+    'Fate/EXTRA CCC'
 ]
 
 const filtersArr = [
     "Master",
     "Servant",
     "Clock Tower",
-    "Church"
+    "Church",
+    "Arthurian",
+    "Irish Myth",
+    "Greek Myth",
+    "Sumerian Myth",
+    "Hassan",
+    "Historical"
 ]

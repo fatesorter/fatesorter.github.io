@@ -56,10 +56,10 @@ function startup() {
 
 
   this.selectAllMainline()
-  for (let i = 1; i < 8; i++) {
+  for (let i = 1; i < 12; i++) {
     document.getElementById(`dupeC${i}`).checked = false;
     }
-    for (let i = 1; i < 9; i++) {
+    for (let i = 1; i < 20; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
 }
@@ -161,7 +161,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 8; i++) {
+    for (let i = 1; i < 12; i++) {
         if (!document.getElementById(`dupeC${i}`).checked) {
             continue;
         }
@@ -183,7 +183,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 9; i++) {
+    for (let i = 1; i < 20; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -223,6 +223,14 @@ function applyFilters() {
     if (games.includes('Fate/strange Fake') || games.includes('Fate/strange Fake Extra')) {
         tags.push('sf')
     }
+    if (games.includes('Fate/EXTRA')) {
+        tags.push('ex')
+        tags.push('mc')
+    }
+    if (games.includes('Fate/EXTRA CCC')) {
+        tags.push('ccc')
+        tags.push('mc')
+    }
     portraitTagSelect(tags)
 
     let useTemp = false;
@@ -241,7 +249,7 @@ function applyFilters() {
 
     useTemp = false;
     templist = [];
-    for (let i = 2; i < 4; i++) { //filter for Church/Clock Tower
+    for (let i = 2; i < filtersArr.length; i++) { //filter for Church/Clock Tower
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))
