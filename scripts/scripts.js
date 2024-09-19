@@ -52,14 +52,20 @@ function startup() {
     document.getElementById('optSelect_all').checked = false;
     document.getElementById('optSelect_main').checked = false;
     document.getElementById('optSelect_mainextra').checked = false;
+    document.getElementById('optSelect_extra').checked = false;
+    document.getElementById('optSelect_extraextra').checked = false;
     document.getElementById('optSelect_allExtra').checked = false;
 
 
-  this.selectAllMainline()
-  for (let i = 1; i < 12; i++) {
-    document.getElementById(`dupeC${i}`).checked = false;
+    this.selectAllMainline()
+    let options = 0;
+    for (let i = 1; i < 14; i++) {
+        options = document.getElementById(`dupe${i}`).getAttribute("options");
+        for (let j = 1; j <= options; j++) {
+            document.getElementById(`dupeC${i}D${j}`).checked = false;
+        }
     }
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 23; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
 }
@@ -107,6 +113,19 @@ function selectMain(id, arr, option) {
 function selectMainExtra(id, arr, option) {
     for (let i = 0; i < arr.length; i++) {
         if ((arr[i].includes("stay night") || arr[i].includes("hollow ataraxia") || arr[i].includes("Zero") || arr[i].includes("Case Files") || arr[i].includes("strange Fake")) && arr[i].includes("Extra"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
+}
+
+function selectExtraverse(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].includes("/EXTRA") || arr[i].includes("CCC") || arr[i].includes("EXTELLA"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
+}
+function selectExtraverseExtra(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if ((arr[i].includes("/EXTRA") || arr[i].includes("CCC") || arr[i].includes("EXTELLA")) && arr[i].includes("Extra"))
             document.getElementById(option + i).checked = document.getElementById(id).checked;
     }
 }
@@ -161,29 +180,23 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 12; i++) {
-        if (!document.getElementById(`dupeC${i}`).checked) {
-            continue;
-        }
-        let sel = document.getElementById(`dupe${i}`).options
-        let indexToKeep = document.getElementById(`dupe${i}`).selectedIndex
+    for (let i = 1; i < 14; i++) {
 
- 
-        let len = sel.length
+        let sel = document.getElementById(`dupe${i}`).options;
+        let indexToKeep = document.getElementById(`dupe${i}`).selectedIndex;
+        let len = sel.length;
 
         for (let j = 0; j < len; j++) {
-            if (j != indexToKeep && charlist.includes(sel[j].value)) {
-        
+            if (j != indexToKeep && charlist.includes(sel[j].value) && document.getElementById(`dupeC${i}D${j + 1}`).checked) {
                 charlist.splice(charlist.indexOf(sel[j].value), 1)
                 charlist.push(sel[indexToKeep].value)
-            } 
-
+            }
         }
     }
 }
 
 function editPortraits() {
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 23; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -231,11 +244,14 @@ function applyFilters() {
         tags.push('ccc')
         tags.push('mc')
     }
+    if (games.includes('Fate/EXTELLA')) {
+        tags.push('mc')
+    }
     portraitTagSelect(tags)
 
     let useTemp = false;
     let templist = [];
-    for (let i = 0; i < 2; i++) { //filter for Master/Servant
+    for (let i = 0; i < 2; i++) { //filter for Gender
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))
@@ -249,7 +265,21 @@ function applyFilters() {
 
     useTemp = false;
     templist = [];
-    for (let i = 2; i < filtersArr.length; i++) { //filter for Church/Clock Tower
+    for (let i = 2; i < 4; i++) { //filter for Master/Servant
+        if (document.getElementById(`filter${i}`).checked) {
+            templist = [...templist, ...charlist.filter(element =>
+                (library[element].class.includes(filtersArr[i]))
+            )]
+            useTemp = true;
+        }
+    }
+    if (useTemp) {
+        charlist = templist;
+    }
+
+    useTemp = false;
+    templist = [];
+    for (let i = 4; i < filtersArr.length; i++) { //filter for Church/Clock Tower/Servant Origin
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))

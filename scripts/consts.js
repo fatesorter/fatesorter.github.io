@@ -10,10 +10,16 @@ const fateArr = [
     'Fate/strange Fake',
     'Fate/strange Fake Extra',
     'Fate/EXTRA',
-    'Fate/EXTRA CCC'
+    'Fate/EXTRA Extra',
+    'Fate/EXTRA CCC',
+    'Fate/EXTRA CCC Extra',
+    'Fate/EXTELLA',
+    'Fate/EXTELLA Extra'
 ]
 
 const filtersArr = [
+    "Male",
+    "Female",
     "Master",
     "Servant",
     "Clock Tower",
@@ -22,6 +28,8 @@ const filtersArr = [
     "Irish Myth",
     "Greek Myth",
     "Sumerian Myth",
+    "Indian Myth",
+    "Matter of France",
     "Hassan",
     "Historical"
 ]
