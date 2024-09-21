@@ -54,19 +54,21 @@ function startup() {
     document.getElementById('optSelect_mainextra').checked = false;
     document.getElementById('optSelect_extra').checked = false;
     document.getElementById('optSelect_extraextra').checked = false;
+    document.getElementById('optSelect_apoc').checked = false;
+    document.getElementById('optSelect_apocextra').checked = false;
     document.getElementById('optSelect_allExtra').checked = false;
 
 
     this.selectAllMainline()
-    let options = 0;
-    for (let i = 1; i < 14; i++) {
-        options = document.getElementById(`dupe${i}`).getAttribute("options");
+    for (let i = 1; i < 29; i++) {
+        document.getElementById(`portraitC${i}`).checked = false;
+    }
+    for (let i = 1; i < 20; i++) {
+        let sel = document.getElementById(`dupe${i}`).options;
+        let options = sel.length;
         for (let j = 1; j <= options; j++) {
             document.getElementById(`dupeC${i}D${j}`).checked = false;
         }
-    }
-    for (let i = 1; i < 23; i++) {
-        document.getElementById(`portraitC${i}`).checked = false;
     }
 }
 
@@ -130,6 +132,19 @@ function selectExtraverseExtra(id, arr, option) {
     }
 }
 
+function selectApoc(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].includes("Apocrypha") || arr[i].includes("Lost Einherjar"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
+}
+function selectApocExtra(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if ((arr[i].includes("Apocrypha") || arr[i].includes("Lost Einherjar")) && arr[i].includes("Extra"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
+}
+
 function portraitChoice(id1, id2, id3, id4) {
     let cbox1 = document.getElementById(id1)
     if (cbox1.checked == false) {
@@ -180,7 +195,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 14; i++) {
+    for (let i = 1; i < 20; i++) {
 
         let sel = document.getElementById(`dupe${i}`).options;
         let indexToKeep = document.getElementById(`dupe${i}`).selectedIndex;
@@ -196,7 +211,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 23; i++) {
+    for (let i = 1; i < 29; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -247,11 +262,17 @@ function applyFilters() {
     if (games.includes('Fate/EXTELLA')) {
         tags.push('mc')
     }
+    if (games.includes('Fate/Apocrypha')) {
+        tags.push('apoc')
+    }
+    if (games.includes('Fate:Lost Einherjar')) {
+        tags.push('le')
+    }
     portraitTagSelect(tags)
 
     let useTemp = false;
     let templist = [];
-    for (let i = 0; i < 2; i++) { //filter for Gender
+    for (let i = 0; i < 3; i++) { //filter for Gender
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))
@@ -265,7 +286,7 @@ function applyFilters() {
 
     useTemp = false;
     templist = [];
-    for (let i = 2; i < 4; i++) { //filter for Master/Servant
+    for (let i = 3; i < 6; i++) { //filter for Master/Servant
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))
@@ -279,7 +300,21 @@ function applyFilters() {
 
     useTemp = false;
     templist = [];
-    for (let i = 4; i < filtersArr.length; i++) { //filter for Church/Clock Tower/Servant Origin
+    for (let i = 6; i < 18; i++) { //filter for Servant Class
+        if (document.getElementById(`filter${i}`).checked) {
+            templist = [...templist, ...charlist.filter(element =>
+                (library[element].class.includes(filtersArr[i]))
+            )]
+            useTemp = true;
+        }
+    }
+    if (useTemp) {
+        charlist = templist;
+    }
+
+    useTemp = false;
+    templist = [];
+    for (let i = 18; i < filtersArr.length; i++) { //filter for Church/Clock Tower/Servant Origin
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))

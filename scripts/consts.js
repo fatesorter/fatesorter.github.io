@@ -14,22 +14,45 @@ const fateArr = [
     'Fate/EXTRA CCC',
     'Fate/EXTRA CCC Extra',
     'Fate/EXTELLA',
-    'Fate/EXTELLA Extra'
+    'Fate/EXTELLA Extra',
+    'Fate/Apocrypha',
+    'Fate/Apocrypha Extra',
+    'Fate:Lost Einherjar',
+    'Fate:Lost Einherjar Extra'
 ]
 
 const filtersArr = [
     "Male",
     "Female",
+    "Other G",
     "Master",
     "Servant",
+    "Other W",
+    "Saber",
+    "Archer",
+    "Lancer",
+    "Rider",
+    "Caster",
+    "Assassin",
+    "Berserker",
+    "Avenger",
+    "Ruler",
+    "MoonCancer",
+    "Alter Ego",
+    "Other C",
     "Clock Tower",
     "Church",
+    "Yggdmillennia",
     "Arthurian",
     "Irish Myth",
+    "Matter of France",
+    "Norse Myth",
+    "Germanic Legend",
     "Greek Myth",
     "Sumerian Myth",
     "Indian Myth",
-    "Matter of France",
     "Hassan",
-    "Historical"
+    "Original",
+    "Historical",
+    "Literary"
 ]
