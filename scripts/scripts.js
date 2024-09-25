@@ -56,14 +56,16 @@ function startup() {
     document.getElementById('optSelect_extraextra').checked = false;
     document.getElementById('optSelect_apoc').checked = false;
     document.getElementById('optSelect_apocextra').checked = false;
+    document.getElementById('optSelect_proto').checked = false;
+    document.getElementById('optSelect_protoextra').checked = false;
     document.getElementById('optSelect_allExtra').checked = false;
 
 
     this.selectAllMainline()
-    for (let i = 1; i < 29; i++) {
+    for (let i = 1; i < 33; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 25; i++) {
         let sel = document.getElementById(`dupe${i}`).options;
         let options = sel.length;
         for (let j = 1; j <= options; j++) {
@@ -134,13 +136,26 @@ function selectExtraverseExtra(id, arr, option) {
 
 function selectApoc(id, arr, option) {
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i].includes("Apocrypha") || arr[i].includes("Lost Einherjar"))
+        if (arr[i].includes("Apocrypha") || arr[i].includes("Lost Einherjar") || arr[i].includes("Labyrinth"))
             document.getElementById(option + i).checked = document.getElementById(id).checked;
     }
 }
 function selectApocExtra(id, arr, option) {
     for (let i = 0; i < arr.length; i++) {
-        if ((arr[i].includes("Apocrypha") || arr[i].includes("Lost Einherjar")) && arr[i].includes("Extra"))
+        if ((arr[i].includes("Apocrypha") || arr[i].includes("Lost Einherjar") || arr[i].includes("Labyrinth")) && arr[i].includes("Extra"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
+}
+
+function selectProto(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].includes("Prototype") || arr[i].includes("Labyrinth"))
+            document.getElementById(option + i).checked = document.getElementById(id).checked;
+    }
+}
+function selectProtoExtra(id, arr, option) {
+    for (let i = 0; i < arr.length; i++) {
+        if ((arr[i].includes("Prototype") || arr[i].includes("Labyrinth")) && arr[i].includes("Extra"))
             document.getElementById(option + i).checked = document.getElementById(id).checked;
     }
 }
@@ -195,7 +210,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 25; i++) {
 
         let sel = document.getElementById(`dupe${i}`).options;
         let indexToKeep = document.getElementById(`dupe${i}`).selectedIndex;
@@ -211,7 +226,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 29; i++) {
+    for (let i = 1; i < 33; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -251,22 +266,28 @@ function applyFilters() {
     if (games.includes('Fate/strange Fake') || games.includes('Fate/strange Fake Extra')) {
         tags.push('sf')
     }
-    if (games.includes('Fate/EXTRA')) {
+    if (games.includes('Fate/EXTRA') || games.includes('Fate/EXTRA Extra')) {
         tags.push('ex')
         tags.push('mc')
     }
-    if (games.includes('Fate/EXTRA CCC')) {
+    if (games.includes('Fate/EXTRA CCC') || games.includes('Fate/EXTRA CCC Extra')) {
         tags.push('ccc')
         tags.push('mc')
     }
-    if (games.includes('Fate/EXTELLA')) {
+    if (games.includes('Fate/EXTELLA') || games.includes('Fate/EXTRELLA Extra')) {
         tags.push('mc')
     }
-    if (games.includes('Fate/Apocrypha')) {
+    if (games.includes('Fate/Apocrypha') || games.includes('Fate/Apocrypha Extra')) {
         tags.push('apoc')
     }
-    if (games.includes('Fate:Lost Einherjar')) {
+    if (games.includes('Fate:Lost Einherjar') || games.includes('Fate:Lost Einherjar Extra')) {
         tags.push('le')
+    }
+    if (games.includes('Fate/Prototype')) {
+        tags.push('proto')
+    }
+    if (games.includes('Fate/Prototype: Fragments')) {
+        tags.push('frags')
     }
     portraitTagSelect(tags)
 
@@ -314,7 +335,21 @@ function applyFilters() {
 
     useTemp = false;
     templist = [];
-    for (let i = 18; i < filtersArr.length; i++) { //filter for Church/Clock Tower/Servant Origin
+    for (let i = 18; i < 36; i++) { //filter for character origin
+        if (document.getElementById(`filter${i}`).checked) {
+            templist = [...templist, ...charlist.filter(element =>
+                (library[element].class.includes(filtersArr[i]))
+            )]
+            useTemp = true;
+        }
+    }
+    if (useTemp) {
+        charlist = templist;
+    }
+
+    useTemp = false;
+    templist = [];
+    for (let i = 36; i < filtersArr.length; i++) { //filter for other traits
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))

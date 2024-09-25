@@ -18,16 +18,24 @@ const fateArr = [
     'Fate/Apocrypha',
     'Fate/Apocrypha Extra',
     'Fate:Lost Einherjar',
-    'Fate:Lost Einherjar Extra'
+    'Fate:Lost Einherjar Extra',
+    'Fate/Prototype',
+    'Fate/Prototype Extra',
+    'Fate/Prototype: Fragments',
+    'Fate/Prototype: Fragments Extra',
+    'Fate/Labyrinth',
+    'Fate/Labyrinth Extra'
 ]
 
 const filtersArr = [
     "Male",
     "Female",
     "Other G",
+
     "Master",
     "Servant",
     "Other W",
+
     "Saber",
     "Archer",
     "Lancer",
@@ -40,6 +48,7 @@ const filtersArr = [
     "MoonCancer",
     "Alter Ego",
     "Other C",
+
     "Clock Tower",
     "Church",
     "Yggdmillennia",
@@ -51,8 +60,15 @@ const filtersArr = [
     "Greek Myth",
     "Sumerian Myth",
     "Indian Myth",
+    "Japanese Myth",
+    "Other M",
+    "Biblical",
     "Hassan",
     "Original",
     "Historical",
-    "Literary"
+    "Literary",
+
+    "Saberface",
+    "Genderbent",
+    "Sovereign"
 ]
