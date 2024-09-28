@@ -62,10 +62,10 @@ function startup() {
 
 
     this.selectAllMainline()
-    for (let i = 1; i < 33; i++) {
+    for (let i = 1; i < 34; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
-    for (let i = 1; i < 25; i++) {
+    for (let i = 1; i < 29; i++) {
         let sel = document.getElementById(`dupe${i}`).options;
         let options = sel.length;
         for (let j = 1; j <= options; j++) {
@@ -210,7 +210,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 25; i++) {
+    for (let i = 1; i < 29; i++) {
 
         let sel = document.getElementById(`dupe${i}`).options;
         let indexToKeep = document.getElementById(`dupe${i}`).selectedIndex;
@@ -226,7 +226,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 33; i++) {
+    for (let i = 1; i < 34; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -289,6 +289,12 @@ function applyFilters() {
     if (games.includes('Fate/Prototype: Fragments')) {
         tags.push('frags')
     }
+    if (games.includes('Fate/type Redline')) {
+        tags.push('tr')
+    }
+    if (games.includes('Fate/Samurai Remnant')) {
+        tags.push('sr')
+    }
     portraitTagSelect(tags)
 
     let useTemp = false;
@@ -349,7 +355,21 @@ function applyFilters() {
 
     useTemp = false;
     templist = [];
-    for (let i = 36; i < filtersArr.length; i++) { //filter for other traits
+    for (let i = 36; i < 48; i++) { //filter for alignment
+        if (document.getElementById(`filter${i}`).checked) {
+            templist = [...templist, ...charlist.filter(element =>
+                (library[element].class.includes(filtersArr[i]))
+            )]
+            useTemp = true;
+        }
+    }
+    if (useTemp) {
+        charlist = templist;
+    }
+
+    useTemp = false;
+    templist = [];
+    for (let i = 48; i < filtersArr.length; i++) { //filter for other traits
         if (document.getElementById(`filter${i}`).checked) {
             templist = [...templist, ...charlist.filter(element =>
                 (library[element].class.includes(filtersArr[i]))

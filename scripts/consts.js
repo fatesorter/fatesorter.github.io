@@ -24,7 +24,11 @@ const fateArr = [
     'Fate/Prototype: Fragments',
     'Fate/Prototype: Fragments Extra',
     'Fate/Labyrinth',
-    'Fate/Labyrinth Extra'
+    'Fate/Labyrinth Extra',
+    'Fate/type Redline',
+    'Fate/type Redline Extra',
+    'Fate/Samurai Remnant',
+    'Fate/Samurai Remnant Extra'
 ]
 
 const filtersArr = [
@@ -68,6 +72,22 @@ const filtersArr = [
     "Historical",
     "Literary",
 
+    "Lawful Good",
+    "NeutralX Good",
+    "Chaotic Good",
+    "Lawful NeutralY",
+    "NeutralX NeutralY",
+    "Chaotic NeutralY",
+    "Lawful Evil",
+    "NeutralX Evil",
+    "Chaotic Evil",
+    "Lawful Mad",
+    "Other A",
+    "Chaotic Mad",
+
+    "Alter",
+    "CG",
+    "Homunculus",
     "Saberface",
     "Genderbent",
     "Sovereign"
