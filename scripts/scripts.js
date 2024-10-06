@@ -62,7 +62,7 @@ function startup() {
 
 
     this.selectAllMainline()
-    for (let i = 1; i < 34; i++) {
+    for (let i = 1; i < 36; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
     for (let i = 1; i < 29; i++) {
@@ -226,7 +226,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 34; i++) {
+    for (let i = 1; i < 36; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
@@ -294,6 +294,9 @@ function applyFilters() {
     }
     if (games.includes('Fate/Samurai Remnant')) {
         tags.push('sr')
+    }
+    if (games.includes('Fate/Requiem')) {
+        tags.push('req')
     }
     portraitTagSelect(tags)
 

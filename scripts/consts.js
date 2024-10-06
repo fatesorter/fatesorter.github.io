@@ -28,7 +28,9 @@ const fateArr = [
     'Fate/type Redline',
     'Fate/type Redline Extra',
     'Fate/Samurai Remnant',
-    'Fate/Samurai Remnant Extra'
+    'Fate/Samurai Remnant Extra',
+    'Fate/Requiem',
+    'Fate/Requiem Extra'
 ]
 
 const filtersArr = [
@@ -87,8 +89,11 @@ const filtersArr = [
 
     "Alter",
     "CG",
-    "Homunculus",
     "Saberface",
+    "Homunculus",
+    "AI",
+    "Vampire",
     "Genderbent",
-    "Sovereign"
+    "Sovereign",
+    "Reality Marble"
 ]
