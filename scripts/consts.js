@@ -93,6 +93,9 @@ const filtersArr = [
     "Homunculus",
     "AI",
     "Vampire",
+    "Draconic",
+    "Psychic",
+    "Threat",
     "Genderbent",
     "Sovereign",
     "Reality Marble"

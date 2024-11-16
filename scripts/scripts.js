@@ -65,7 +65,7 @@ function startup() {
     for (let i = 1; i < 36; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
-    for (let i = 1; i < 29; i++) {
+    for (let i = 1; i < 30; i++) {
         let sel = document.getElementById(`dupe${i}`).options;
         let options = sel.length;
         for (let j = 1; j <= options; j++) {
@@ -210,7 +210,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 29; i++) {
+    for (let i = 1; i < 30; i++) {
 
         let sel = document.getElementById(`dupe${i}`).options;
         let indexToKeep = document.getElementById(`dupe${i}`).selectedIndex;
