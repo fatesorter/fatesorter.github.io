@@ -88,14 +88,17 @@ const filtersArr = [
     "Chaotic Mad",
 
     "Alter",
+    "High",
     "CG",
-    "Saberface",
     "Homunculus",
     "AI",
     "Vampire",
     "Draconic",
     "Psychic",
     "Threat",
+    "Divine",
+    "Anti",
+    "Saberface",
     "Genderbent",
     "Sovereign",
     "Reality Marble"

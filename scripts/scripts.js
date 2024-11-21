@@ -62,10 +62,10 @@ function startup() {
 
 
     this.selectAllMainline()
-    for (let i = 1; i < 36; i++) {
+    for (let i = 1; i < 38; i++) {
         document.getElementById(`portraitC${i}`).checked = false;
     }
-    for (let i = 1; i < 30; i++) {
+    for (let i = 1; i < 33; i++) {
         let sel = document.getElementById(`dupe${i}`).options;
         let options = sel.length;
         for (let j = 1; j <= options; j++) {
@@ -210,7 +210,7 @@ async function initialize() {
 }
 
 function removeDoubles() {
-    for (let i = 1; i < 30; i++) {
+    for (let i = 1; i < 33; i++) {
 
         let sel = document.getElementById(`dupe${i}`).options;
         let indexToKeep = document.getElementById(`dupe${i}`).selectedIndex;
@@ -226,7 +226,7 @@ function removeDoubles() {
 }
 
 function editPortraits() {
-    for (let i = 1; i < 36; i++) {
+    for (let i = 1; i < 38; i++) {
         if (!document.getElementById(`portraitC${i}`).checked) {
             continue;
         }
